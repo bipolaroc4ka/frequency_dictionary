@@ -13,11 +13,19 @@ namespace Exam_Tests
         string path;
         string[] files;        
         Dictionary<string, int> vacabulary = new Dictionary<string, int>();
-        
+        public string[] GetFiles { get { return files; } }
         public Text(string path)
         {
-            this.path = path;
-            this.files = Directory.GetFiles(this.path);
+            try
+            {
+                this.path = path;
+                this.files = Directory.GetFiles(this.path);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Not Found");
+            }
+            
         }
         public Dictionary<string, int> ReadText()
         {

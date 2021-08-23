@@ -1,0 +1,7 @@
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Exam_Tests\Exam_Tests\bin\Debug\Exam_Tests.exe.config
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Exam_Tests\Exam_Tests\bin\Debug\Exam_Tests.exe
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Exam_Tests\Exam_Tests\bin\Debug\Exam_Tests.pdb
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Exam_Tests\Exam_Tests\obj\Debug\Exam_Tests.csproj.AssemblyReference.cache
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Exam_Tests\Exam_Tests\obj\Debug\Exam_Tests.csproj.CoreCompileInputs.cache
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Exam_Tests\Exam_Tests\obj\Debug\Exam_Tests.exe
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Exam_Tests\Exam_Tests\obj\Debug\Exam_Tests.pdb
