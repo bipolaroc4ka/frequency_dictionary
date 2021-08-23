@@ -8,53 +8,90 @@ using System.IO;
 
 namespace Exam_Tests
 {
-    class Program
+    public class Text
     {
-        static void Main(string[] args)
+        string path;
+        string[] files;        
+        Dictionary<string, int> vacabulary = new Dictionary<string, int>();
+        
+        public Text(string path)
         {
-            Console.WriteLine("Enter dir path: ");
-            string path = Console.ReadLine();            
-            string[] files = Directory.GetFiles(path);
-            Dictionary<string, int> vacabulary = new Dictionary<string, int>();
+            this.path = path;
+            this.files = Directory.GetFiles(this.path);
+        }
+        public Dictionary<string, int> ReadText()
+        {
+           
             char[] separator = { ' ', ',', '.', '!', '?', ':' };
-            foreach (string file in files)
+            foreach (var item in files)
             {
-                if (file.Contains(".txt"))
+                if (item.Contains(".txt"))
                 {
-                   string[] text = File.ReadAllLines(file);
+                    string[] text = File.ReadAllLines(item);
                     foreach (string tex in text)
                     {
                         string[] www = tex.Split(separator);
-                        foreach (var item in www)
+                        foreach (var item1 in www)
                         {
-                            if (vacabulary.ContainsKey(item))
+                            if (vacabulary.ContainsKey(item1))
                             {
-                                vacabulary[item]++;
+                                vacabulary[item1]++;
                             }
                             else
                             {
-                                vacabulary.Add(item, 1);
+                                vacabulary.Add(item1, 1);
                             }
                         }
                     }
                 }
                 
             }
-            var result = vacabulary.OrderByDescending(i => i.Value);
+            return this.vacabulary;
+        }
+        public IOrderedEnumerable<KeyValuePair<string, int>> SortDescending(Dictionary<string, int> pairs)
+        {
+           return pairs.OrderByDescending(i => i.Value);
+        }
+        public int SaveToFile(IOrderedEnumerable<KeyValuePair<string, int>> vacabulary, string fileresult)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(fileresult + "\\result.txt");
+                foreach (var item in vacabulary)
+                {
+                    byte[] array = System.Text.Encoding.Default.GetBytes(item.Key + " " + item.Value);
+
+                    sw.WriteLine(item.ToString());
+
+
+                    //Console.WriteLine(item);
+                }
+                sw.Close();
+                Console.WriteLine("Complete!");
+
+                return 0;
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+            
+        }
+       
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter dir path: ");
+            string path = Console.ReadLine();
+            Text t = new Text(path);
+            Dictionary<string, int> v = t.ReadText();
+            IOrderedEnumerable<KeyValuePair<string, int>> vacabulary = t.SortDescending(v);
             Console.WriteLine("Enter path for file result: ");
             string fileresult = Console.ReadLine();
-            StreamWriter sw = new StreamWriter(fileresult + "\\result.txt");
-            foreach (var item in result)
-            {
-               byte[] array = System.Text.Encoding.Default.GetBytes(item.Key + " " +item.Value);
-
-                sw.WriteLine(item.ToString());
-                
-               
-                //Console.WriteLine(item);
-            }
-            sw.Close();
-            Console.WriteLine("Complete!");
+            t.SaveToFile(vacabulary, fileresult);           
 
 
         }
